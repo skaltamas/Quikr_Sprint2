@@ -1,0 +1,8 @@
+<suite name="BusinessSuite">
+	<test name="serviceoffered">
+		<classes>
+			<class name="base.Quikr_base"/>
+			<class name="testsuite.Quikr_Testing"/>					
+		</classes>
+	</test>	
+</suite>
