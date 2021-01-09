@@ -48,12 +48,11 @@ public class VisitStore extends QuikBase
 			driver.switchTo().window(al.get(1));
 			List<WebElement> l=w1.findElements(By.tagName("h1"));
 			System.out.println("Number of stores on the page is "+l.size());
-			/*System.out.println(driver.getTitle());
 			for(int i=0;i<l.size();i++)
 			{
 				Reporter.log("Title: "+l.get(i).getText()+" ");
 				Reporter.log("Address: "+l.get(i).findElement(By.xpath("//h2[text()]")).getText()+" ");
 				System.out.println(l.get(i).getText());
-			}*/
+			}
 	}
 }
