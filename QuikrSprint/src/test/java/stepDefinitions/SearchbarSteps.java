@@ -1,12 +1,12 @@
-package stepDefinations;
+package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.Quikr_Homepg;
+import pages.Searchbar;
 
-public class Quikr_step {
+public class SearchbarSteps {
 	
-	Quikr_Homepg q=new Quikr_Homepg();
+	Searchbar q=new Searchbar();
 	
 	@Given("^user is on quikr homepage$")
     public void user_is_on_quikr_homepage() throws Throwable {
@@ -17,7 +17,7 @@ public class Quikr_step {
     @When("^enter any (.+) to search and click search$")
     public void enter_any_to_search_and_click_search(String searchword) throws Throwable {
        q.searchbar(searchword);
-       q.validate_title();
+       
        //q.goprevpage();
     }
 

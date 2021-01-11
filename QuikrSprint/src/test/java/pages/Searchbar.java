@@ -1,3 +1,12 @@
+/* Author: Virali Mehta
+ * Date: 09-01-2021
+ * Description: Below code is for Search bar in Quikr Homapage
+ * 				openurl
+ * 				validate_title
+ * 				searchbar
+ * 				invalidsearch
+ * */
+
 package pages;
 
 import java.io.FileInputStream;
@@ -19,26 +28,26 @@ import com.aventstack.extentreports.Status;
 
 import base.Quikr_base;
 
-public class Quikr_Homepg extends Quikr_base
+public class Searchbar extends Quikr_base
 {
-	static @FindBy(xpath="//input[@placeholder='Search in All India']") WebElement searchbar;
+	static @FindBy(xpath="//input[@placeholder='Search in All India']") WebElement searchbar; //Pagefactory elements for Search bar 
 	static @FindBy(xpath="//button[@id='submitSearch']") WebElement searchbtn;
 	static @FindBy(xpath="//span[text()='NOT NOW']") WebElement popup;
 	
-	public void openurl() throws Exception 
+	public void openurl() throws Exception                    //method for open url 
 	{
 		initialize();
-		PageFactory.initElements(driver,this);	
+		PageFactory.initElements(driver,this);	//bind the elements with page object
 		driver.get(prop.getProperty("url"));
 		Thread.sleep(3000);
-		new Actions(driver).moveToElement(popup).click().perform();		
+		new Actions(driver).moveToElement(popup).click().perform();	//popup code	
 	}
 	
-	public void validate_title() throws Exception
+	public void validate_title() throws Exception //method for validate tilte
 	{
 		Thread.sleep(5000);
 		String title=driver.getTitle();
-		if(title.contains("Free Classified Ads in India, Post Ads Online | Quikr  India"))
+		if(title.contains("Free Classified Ads in India"))
 		{
 			testlog=ext.createTest("Homepage_search");
 			testlog.log(Status.PASS, "Homepage title is correct");
@@ -52,7 +61,7 @@ public class Quikr_Homepg extends Quikr_base
 		}
 	}
 	
-	public void searchbar(String str) throws Exception 
+	public void searchbar(String str) throws Exception  //method for search words
 	{
 		
 		searchbar.click();
@@ -60,24 +69,48 @@ public class Quikr_Homepg extends Quikr_base
 		Thread.sleep(3000);
 		searchbtn.click();
 		Thread.sleep(5000);
-		takescreenshot("searchbar.png");
+		String title=driver.getTitle();
+		if(title.contains(str))
+		{
+			testlog=ext.createTest(str);
+			testlog.log(Status.PASS,str);
+			takescreenshot(str+".png");
+		}
+		else
+		{
+			testlog=ext.createTest(str);
+			testlog.log(Status.FAIL,str);
+			takescreenshot(str+".png");
+		}
 		driver.navigate().back();	
+		
 	}
 	
-	public void invalidsearch() {
+	public void invalidsearch() //method for invalid search
+	{
 		searchbar.click();
-		searchbar.sendKeys(" ");
+		searchbar.sendKeys(" "); //enter space in search bar
 		searchbtn.click();
 		String str=driver.findElement(By.xpath("//input[@placeholder='Search in All India']")).getCssValue("color");
 		System.out.println(str);
-		if(str.contains("rgba(255, 0, 0, 1)")) {
-			
+		if(str.contains("rgba(255, 0, 0, 1)")) 	//text must be in red color 
 			System.out.println("Color matched");
-		}
 		else
 			System.out.println("Color doesn't match");
-		takescreenshot("invalid_input.png");
-	
+		String title=driver.getTitle();
+		if(title.contains("Free Classified Ads in India"))
+		{
+			testlog=ext.createTest("invalid search");
+			testlog.log(Status.PASS, "Invalid search is correct");
+			takescreenshot("Invalidsearch.png");
+		}
+		else
+		{
+			testlog=ext.createTest("invalid search");
+			testlog.log(Status.FAIL, "Invalid search is not correct");
+			takescreenshot("Invalidsearch.png");
+		}
+		teardown();
 	}
 
 }

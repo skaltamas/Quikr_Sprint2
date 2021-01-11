@@ -13,7 +13,7 @@ Scenario Outline: verify search bar in Quikr
 	|searchword|
 	|cars|
 	|bikes|
-	|mobiles|
+	|Mobiles|
 	
 Scenario: invalid input in search bar
 	When enter space in search bar and click search
