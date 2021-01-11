@@ -10,7 +10,7 @@ public class LoginSteps {
 	
 	@Given("^user is on quikr home page$")
     public void user_is_on_quikr_home_page() throws Throwable {
-		l.open_url();
+		//l.open_url();
         l.verify_home();
     }
 
@@ -48,6 +48,4 @@ public class LoginSteps {
     public void user_is_logged_in() throws Throwable {
         
     }
-
-
 }

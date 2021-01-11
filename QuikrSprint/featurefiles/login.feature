@@ -1,4 +1,4 @@
-#Author: your.email@your.domain.com
+#Author: Altamas Shaikh
 
 @tag
 Feature: Login
