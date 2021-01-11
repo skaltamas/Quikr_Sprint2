@@ -27,7 +27,7 @@ public class Login extends QuikrBase{
 	static @FindBy(xpath="//button[text()='Continue']") WebElement continuebtn2;
 	static @FindBy(xpath="//div[@class='nls_formError']") WebElement errormsg;
 	
-	//Web elements initialized
+	//Web elements initialised
 	public Login() {
 		PageFactory.initElements(driver, this);
 	}
