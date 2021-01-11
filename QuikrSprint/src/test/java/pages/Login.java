@@ -14,9 +14,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.aventstack.extentreports.Status;
 
-import base.QuikrBase;
+import base.QuikBase;
 
-public class Login extends QuikrBase{
+public class Login extends QuikBase{
 	
 	//Web elements declared
 	static @FindBy(xpath="//div[@class='nls_formContainer']/div[1]/input") WebElement valid;

@@ -26,20 +26,27 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.aventstack.extentreports.Status;
 
-import base.Quikr_base;
+import base.QuikBase;
 
-public class Searchbar extends Quikr_base
+
+
+public class Searchbar extends QuikBase
 {
 	static @FindBy(xpath="//input[@placeholder='Search in All India']") WebElement searchbar; //Pagefactory elements for Search bar 
 	static @FindBy(xpath="//button[@id='submitSearch']") WebElement searchbtn;
 	static @FindBy(xpath="//span[text()='NOT NOW']") WebElement popup;
 	
-	public void openurl() throws Exception                    //method for open url 
+	public void openurl()                   //method for open url 
 	{
 		initialize();
 		PageFactory.initElements(driver,this);	//bind the elements with page object
 		driver.get(prop.getProperty("url"));
-		Thread.sleep(3000);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		new Actions(driver).moveToElement(popup).click().perform();	//popup code	
 	}
 	

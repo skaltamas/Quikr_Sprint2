@@ -39,7 +39,7 @@ public class QuikBase
 	public static ExtentReports ext;
 	public static ExtentTest testlog;
 	
-	@BeforeSuite						//execute before entire prog suite 
+	@Before						//execute before entire prog suite 
 	public void initialize()
 	{
 		prop=new Properties();
@@ -99,7 +99,7 @@ public class QuikBase
 		WebElement pop=driver.findElement(By.xpath("//span[text()='NOT NOW']"));
 		new Actions(driver).moveToElement(pop).click().perform();
 	}
-	@AfterSuite
+	@After
 	public void teardown()
 	{
 		ext.flush();//save the report
