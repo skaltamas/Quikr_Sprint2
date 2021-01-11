@@ -6,11 +6,19 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -24,12 +32,14 @@ public class QuikBase
 {
 	public static WebDriver driver;
 	public static Properties prop;
+	@FindBy(xpath="//div[@class='select-city']/a/i[2]") WebElement cityarrow;
+	@FindBy(xpath="//div[@class='spl-cities']/a[text()='All India']") WebElement h;
 	
 	public static ExtentHtmlReporter htmlreport;
 	public static ExtentReports ext;
 	public static ExtentTest testlog;
 	
-	@Before						//execute before entire prog suite 
+	@BeforeSuite						//execute before entire prog suite 
 	public void initialize()
 	{
 		prop=new Properties();
@@ -75,8 +85,21 @@ public class QuikBase
 		testlog.addScreenCaptureFromPath(prop.getProperty("screens")+"\\"+imagename);
 		}catch(Exception e) {}
 	}
-	
-	@After
+	public void openurl()
+	{
+		PageFactory.initElements(driver, this);
+		driver.get(prop.getProperty("url"));
+		takescreenshot("Homepage.png");
+		try {
+			cityarrow.click();
+			Thread.sleep(2000);
+			h.click();
+			Thread.sleep(20000);
+		}catch(Exception e) {}
+		WebElement pop=driver.findElement(By.xpath("//span[text()='NOT NOW']"));
+		new Actions(driver).moveToElement(pop).click().perform();
+	}
+	@AfterSuite
 	public void teardown()
 	{
 		ext.flush();//save the report
