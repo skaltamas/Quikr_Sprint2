@@ -21,9 +21,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.aventstack.extentreports.Status;
 
-import base.QuikrBase;
+import base.QuikBase;
 
-public class PostFreeAd extends QuikrBase {
+
+
+public class PostFreeAd extends QuikBase {
 	@FindBy(xpath="//a[@id='postAdBtn']") WebElement pt;                   //pagefactory elements for  post ad page
     @FindBy(xpath="//div[@class='menulist']") WebElement w1;
 	//@FindBy(xpath="//div[@class='menulist']/div[2]/div[1]") WebElement w2;
