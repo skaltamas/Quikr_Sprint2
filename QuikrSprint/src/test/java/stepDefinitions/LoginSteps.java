@@ -7,12 +7,6 @@ import pages.Login;
 
 public class LoginSteps {
 	Login l = new Login();
-	
-	@Given("^user is on quikr home page$")
-    public void user_is_on_quikr_home_page() throws Throwable {
-		//l.open_url();
-        l.verify_home();
-    }
 
     @Given("^user is on login popup$")
     public void user_is_on_login_popup() throws Throwable {

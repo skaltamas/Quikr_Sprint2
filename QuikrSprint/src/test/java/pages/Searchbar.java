@@ -36,18 +36,8 @@ public class Searchbar extends QuikBase
 	static @FindBy(xpath="//button[@id='submitSearch']") WebElement searchbtn;
 	static @FindBy(xpath="//span[text()='NOT NOW']") WebElement popup;
 	
-	public void openurl()                   //method for open url 
-	{
-		initialize();
+	public Searchbar() {
 		PageFactory.initElements(driver,this);	//bind the elements with page object
-		driver.get(prop.getProperty("url"));
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		new Actions(driver).moveToElement(popup).click().perform();	//popup code	
 	}
 	
 	public void validate_title() throws Exception //method for validate tilte
@@ -70,7 +60,6 @@ public class Searchbar extends QuikBase
 	
 	public void searchbar(String str) throws Exception  //method for search words
 	{
-		
 		searchbar.click();
 		searchbar.sendKeys(str);
 		Thread.sleep(3000);
@@ -99,7 +88,6 @@ public class Searchbar extends QuikBase
 		searchbar.sendKeys(" "); //enter space in search bar
 		searchbtn.click();
 		String str=driver.findElement(By.xpath("//input[@placeholder='Search in All India']")).getCssValue("color");
-		System.out.println(str);
 		if(str.contains("rgba(255, 0, 0, 1)")) 	//text must be in red color 
 			System.out.println("Color matched");
 		else
@@ -117,7 +105,6 @@ public class Searchbar extends QuikBase
 			testlog.log(Status.FAIL, "Invalid search is not correct");
 			takescreenshot("Invalidsearch.png");
 		}
-		teardown();
 	}
 
 }

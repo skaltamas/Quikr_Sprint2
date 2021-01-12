@@ -10,11 +10,6 @@ public class VisitStep
 {
 
 	VisitStore v=new VisitStore();
-	
-	@Given("^user is on quikr homepage$")
-    public void user_is_on_quikr_homepage() throws Throwable {
-        v.openurl();
-    }
 
     @When("^user clicks on visit our store button$")
     public void user_clicks_on_visit_our_store_button() throws Throwable {
