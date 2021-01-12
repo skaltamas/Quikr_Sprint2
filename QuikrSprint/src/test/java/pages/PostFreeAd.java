@@ -30,13 +30,8 @@ public class PostFreeAd extends QuikBase {
     @FindBy(xpath="//div[@class='menulist']") WebElement w1;
 	//@FindBy(xpath="//div[@class='menulist']/div[2]/div[1]") WebElement w2;
 	
-	
-	
-	public void openurl()
-	{
-		//initialize();
+	public PostFreeAd() {
 		PageFactory.initElements(driver, this);                            //bind the elements to the driver object
-		driver.get(prop.getProperty("url"));                                
 	}
 	
 	public void post_button()
@@ -61,24 +56,18 @@ public class PostFreeAd extends QuikBase {
 	    
 	     public void displayList() 
 	      {
-	    	 
-	    	
 	    	String str[]= {"Cars & Bikes","Mobiles & Tablets","Electronics & Appliances","Real Estate", 
 	    			 "Home & Lifestyle","Jobs","Services","Education & Training","Others","Entertainment","Pets & Pet Care","Community","Events","Matrimonial"};
 	    	 
 	    	
 			List<WebElement> l=w1.findElements(By.xpath("//div[@class='menu-item-text']"));               //to get the list of categories
 	    	//List<WebElement> l=driver.findElements(By.xpath("//div[@class='menulist']"));
-			System.out.println(l.size());
-			
+			System.out.println("***** Categories of Post Free Ad *****");
 			for(int i=0;i<l.size();i++) 
 			{
 			    System.out.println(l.get(i).getText());
-				//System.out.println(l.get(i).getAttribute("innerHTML"));
-			
 			}
-			
-			
+			System.out.println("***** Validate Categories of Post Free Ad *****");
 			for(int i=0;i<l.size();i++)
 			{
 				if(str[i].matches(l.get(i).getAttribute("innerHTML")));                      //to verify the list of categories
@@ -90,7 +79,7 @@ public class PostFreeAd extends QuikBase {
 				takescreenshot("category.png");	
 	         }
 	    	 
-	    	
+	    	driver.navigate().back();
 	   }
 }	
 

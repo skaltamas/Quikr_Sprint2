@@ -26,10 +26,22 @@ public class VisitStore extends QuikBase
 	@FindBy(xpath="//span[text()='Visit Our Store']") WebElement st;		//page factory element for visit our store button
 	@FindBy(xpath="(//ul)[15]") WebElement w1;
 	@FindBy(xpath="//div[@class='qg-expZoneHeader']/h1") WebElement visit;
+	@FindBy(xpath="//div[@class='select-city']/a/i[2]") WebElement cityarrow;
+	@FindBy(xpath="//div[@class='spl-cities']/a[text()='All India']") WebElement h;
+	
+	public VisitStore() {
+		PageFactory.initElements(driver, this);			//binds element to the driver object
+	}
 	
 	public void store()
 	{
-		PageFactory.initElements(driver, this);			//binds element to the driver object
+		takescreenshot("Homepage.png");
+		try {
+			cityarrow.click();
+			Thread.sleep(2000);
+			h.click();
+			Thread.sleep(10000);
+		}catch(Exception e) {}
 		new Actions(driver).moveToElement(st).click().perform();			//To click on visit our store button
 	}
 	
@@ -41,6 +53,7 @@ public class VisitStore extends QuikBase
 			ArrayList<String> al=new ArrayList<String>(driver.getWindowHandles());
 			driver.switchTo().window(al.get(1));
 			List<WebElement> l=w1.findElements(By.tagName("h1"));			//to validate visit our page
+			System.out.println("***** Visit Store *****");
 			System.out.println("Number of stores on the page is "+l.size());
 			for(int i=0;i<l.size();i++)
 			{
@@ -61,5 +74,6 @@ public class VisitStore extends QuikBase
 				testlog.log(Status.FAIL,"After clicking on visit our store button, text is NOT as expected on the page");
 				takescreenshot("quikrvisitstore.png");
 			}
+			driver.navigate().back();
 	}
 }

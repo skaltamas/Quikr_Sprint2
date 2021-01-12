@@ -29,12 +29,13 @@ public class Form extends QuikBase {
 	@FindBy(name=("emailid")) WebElement email;
 	@FindBy(xpath=("//div[@class='menu-item-text'][1]")) WebElement vehicles;
 	@FindBy(xpath=("//a[text()='Post your Ad']")) WebElement Ad;
-	//(xpath=("//h3[@id='myModalLabel']")) WebElement otp;
+	
+	public Form() {
+		PageFactory.initElements(driver, this);      									//method to click the post ad button//
+	}
 	
 	public void postbutton() {
-		PageFactory.initElements(driver, this);      									//method to click the post ad button//
 		post.click();	
-		
 	}
 	
 	public void postpage() {
@@ -43,12 +44,10 @@ public class Form extends QuikBase {
 			Thread.sleep(5000);
 		}
 		catch(Exception e) {}
-		System.out.println(driver.getTitle());
 		if((driver.getTitle()).contains("Post free ads on Quikr")) {					//validating post free ad page opens//
 			testlog=ext.createTest("Quikr_PostFreeAd");
 			testlog.log(Status.PASS,"Post free ad page opens");
 			takescreenshot("PostFreeAd.png");
-			
 		}
 		else {
 			testlog=ext.createTest("Quikr_PostFreeAd");
@@ -61,7 +60,6 @@ public class Form extends QuikBase {
 		}
 		catch(Exception e) {}
 
-		System.out.println(driver.getTitle());											//validating the form that opens to add product details//
 		if((driver.getTitle()).contains("Sell Used Car")) {
 			testlog=ext.createTest("Quikr_SellProduct");
 			testlog.log(Status.PASS,"Form Opening");
@@ -77,7 +75,6 @@ public class Form extends QuikBase {
 	}
 	
 	public void carform() {																//method to fill the form//
-		System.out.println("hi form");
 		try {
 			Thread.sleep(2000);
 		}
@@ -107,23 +104,7 @@ public class Form extends QuikBase {
 			Thread.sleep(10000);
 		}
 		catch(Exception e) {}
-		/*WebElement otp=driver.findElement(By.xpath("//h3[@id='myModalLabel']"));
-		new Actions(driver).moveToElement(otp).perform();
-		String otpverify=otp.getText();
-		System.out.println(otp.getText());
-		if(otpverify.matches("OTP Verification")) {
-			testlog=ext.createTest("Quikr_FormFill");
-			testlog.log(Status.PASS,"Form filling completed successfully");
-			
-		}
-		else {
-			testlog=ext.createTest("Quikr_FormFill");
-			testlog.log(Status.FAIL,"Form filling not completed successfully");
-			
-		}*/
-		
-		
-
+		teardown();
 	}	
 
 }

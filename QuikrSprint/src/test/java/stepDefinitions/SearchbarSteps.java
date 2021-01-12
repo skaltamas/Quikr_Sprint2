@@ -7,12 +7,6 @@ import pages.Searchbar;
 public class SearchbarSteps {
 	
 	Searchbar q=new Searchbar();
-	
-	@Given("^user is on quikr homepage$")
-    public void user_is_on_quikr_homepage() throws Throwable {
-        q.openurl();
-        q.validate_title();
-    }
 
     @When("^enter any (.+) to search and click search$")
     public void enter_any_to_search_and_click_search(String searchword) throws Throwable {

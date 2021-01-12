@@ -34,20 +34,18 @@ public class QuikBase
 {
 	public static WebDriver driver;
 	public static Properties prop;
-	@FindBy(xpath="//div[@class='select-city']/a/i[2]") WebElement cityarrow;
-	@FindBy(xpath="//div[@class='spl-cities']/a[text()='All India']") WebElement h;
 	
 	public static ExtentHtmlReporter htmlreport;
 	public static ExtentReports ext;
 	public static ExtentTest testlog;
 	
-	@Before						//execute before entire prog suite 
+	//@Before						//execute before entire prog suite 
 	public void initialize()
 	{
 		prop=new Properties();
 		try
 		{
-			prop.load(new FileInputStream("src/test/resources/visit.properties"));
+			prop.load(new FileInputStream("src/test/resources/config.properties"));
 		}
 		catch(Exception e)
 		{
@@ -77,6 +75,15 @@ public class QuikBase
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
+		driver.get(prop.getProperty("url"));
+		/*try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement pop=driver.findElement(By.xpath("//span[text()='NOT NOW']"));
+		new Actions(driver).moveToElement(pop).click().perform();*/
 	}
 	public void takescreenshot(String imagename)
 	{
@@ -87,21 +94,8 @@ public class QuikBase
 		testlog.addScreenCaptureFromPath(prop.getProperty("screens")+"\\"+imagename);
 		}catch(Exception e) {}
 	}
-	public void openurl()
-	{
-		PageFactory.initElements(driver, this);
-		driver.get(prop.getProperty("url"));
-		takescreenshot("Homepage.png");
-		try {
-			cityarrow.click();
-			Thread.sleep(2000);
-			h.click();
-			Thread.sleep(10000);
-		}catch(Exception e) {}
-		WebElement pop=driver.findElement(By.xpath("//span[text()='NOT NOW']"));
-		new Actions(driver).moveToElement(pop).click().perform();
-	}
-	@After
+	
+	//@After
 	public void teardown()
 	{
 		ext.flush();//save the report

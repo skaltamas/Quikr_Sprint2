@@ -1,29 +1,20 @@
 package stepDefinitions;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.ServiceList;
 
 public class ServiceSteps{
-	ServiceList sl=new ServiceList();
-	
-	@Given("^quikr url opens$")
-    public void quikr_url_opens() throws Throwable {
-		sl.openurl();
-	}
-        
+	ServiceList sl=new ServiceList();  
 
-    @When("^validate the homepage$")
+	@When("^validate the homepage$")
     public void validate_the_homepage() throws Throwable {
-    	sl.validate_url();
         
     }
 
     @Then("^display the business list$")
     public void display_the_business_list() throws Throwable {
-    	sl.services();
-        
+        sl.services();
     }
 
 
