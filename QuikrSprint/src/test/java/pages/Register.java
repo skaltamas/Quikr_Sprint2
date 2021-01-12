@@ -5,13 +5,13 @@
  *				open the url
  *				Register with credintials such as mobile no., Name, Email, Password
 */
+//Register 
 package pages;
 
 import java.awt.Robot;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,10 +20,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeMethod;
 
-import base.Quikr_Register_base;
+import base.QuikBase;
 
 
-public class Register extends Quikr_Register_base{
+
+public class Register extends QuikBase{
 	ChromeDriver driver=new ChromeDriver();
 	Actions actions = new Actions(driver);
 
