@@ -14,9 +14,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.aventstack.extentreports.Status;
 
-import base.QuikrBase;
+import base.QuikBase;
 
-public class Login extends QuikrBase{
+public class Login extends QuikBase{
 	
 	//Web elements declared
 	static @FindBy(xpath="//div[@class='nls_formContainer']/div[1]/input") WebElement valid;
@@ -28,13 +28,14 @@ public class Login extends QuikrBase{
 	static @FindBy(xpath="//div[@class='nls_formError']") WebElement errormsg;
 	
 	//Web elements initialized
-	public Login() {
-		PageFactory.initElements(driver, this);
-	}
+	//public Login() {
+		//PageFactory.initElements(driver, this);
+	//}
 	
 	//method to verify home page and take screenshot
 	public void verify_home() {
-		initialize();
+		//initialize();
+		PageFactory.initElements(driver, this);
 		String str = driver.getTitle();
 		if(str.contains("Free Classified Ads")) {
 			testlog=ext.createTest("Homepage");
@@ -120,6 +121,6 @@ public class Login extends QuikrBase{
 			takescreenshot("ValidLogin.png");
 		}
 		
-		teardown();
+		//teardown();
 	}
 }
