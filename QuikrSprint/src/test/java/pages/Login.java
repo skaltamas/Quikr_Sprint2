@@ -28,13 +28,14 @@ public class Login extends QuikBase{
 	static @FindBy(xpath="//div[@class='nls_formError']") WebElement errormsg;
 	
 	//Web elements initialised
-	public Login() {
-		PageFactory.initElements(driver, this);
-	}
+	//public Login() {
+		//PageFactory.initElements(driver, this);
+	//}
 	
 	//method to verify home page and take screenshot
 	public void verify_home() {
-		initialize();
+		//initialize();
+		PageFactory.initElements(driver, this);
 		String str = driver.getTitle();
 		if(str.contains("Free Classified Ads")) {
 			testlog=ext.createTest("Homepage");
@@ -120,6 +121,6 @@ public class Login extends QuikBase{
 			takescreenshot("ValidLogin.png");
 		}
 		
-		teardown();
+		//teardown();
 	}
 }

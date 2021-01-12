@@ -25,8 +25,10 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+
+
 
 public class QuikBase 
 {
@@ -94,7 +96,7 @@ public class QuikBase
 			cityarrow.click();
 			Thread.sleep(2000);
 			h.click();
-			Thread.sleep(20000);
+			Thread.sleep(10000);
 		}catch(Exception e) {}
 		WebElement pop=driver.findElement(By.xpath("//span[text()='NOT NOW']"));
 		new Actions(driver).moveToElement(pop).click().perform();
