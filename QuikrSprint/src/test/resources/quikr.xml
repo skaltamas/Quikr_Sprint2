@@ -1,0 +1,8 @@
+<suite name="registerSuite">
+	<test name="testRegister">
+		<classes>
+			<class name="base.Quikr_Register_base"/>
+			<class name="testrunner.Quikr_Register_testrunner"/>					
+		</classes>
+	</test>	
+</suite>
