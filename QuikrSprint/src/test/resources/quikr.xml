@@ -1,8 +1,8 @@
 <suite name="quikrSuite">
 	<test name="quikrTest">
 		<classes>
-			<class name="base.QuikrBase"/>
-			<class name="testsuite.LoginRunner"/>					
+			<class name="base.QuikBase"/>
+			<class name="testsuite.QuikrRunner"/>					
 		</classes>
 	</test>	
 </suite>
